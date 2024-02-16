@@ -18,7 +18,7 @@ public class BullsAndCows {
     public BullsAndCows(int randNumber) {
         number = randNumber;
         for (int i = 0; i < 4; i++) {
-            assert false;
+//            assert false;
             array[i] = randNumber % 10;
             randNumber /= 10;
         }
