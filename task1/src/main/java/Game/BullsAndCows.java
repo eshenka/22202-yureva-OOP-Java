@@ -1,3 +1,5 @@
+package Game;
+
 public class BullsAndCows {
     int number;
     int bulls;

@@ -1,3 +1,5 @@
+package Game;
+
 public class GameMessages {
     public void unSuccessfulGuessMessage() {
         System.out.println("Unfortunately, your guess was wrong");
