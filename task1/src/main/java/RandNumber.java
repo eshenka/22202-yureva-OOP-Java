@@ -7,7 +7,7 @@ public class RandNumber {
     int number = 0;
     ArrayList<Integer> digits = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
 
-    public RandNumber(int min, int max) {
+    public RandNumber() {
         Random rand = new Random();
         int maxNumber = 9;
         for (int i = 0; i < 4; i++) {
