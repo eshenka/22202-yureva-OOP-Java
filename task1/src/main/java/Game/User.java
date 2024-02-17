@@ -1,5 +1,6 @@
 package Game;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class User {
@@ -13,7 +14,12 @@ public class User {
 
         Scanner scanner = new Scanner(System.in);
 
-        input_number = scanner.nextInt();
+        try {
+            input_number = scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            throw new Exception("Wrong symbols. Enter only 4-digit numbers!");
+        }
+//        input_number = scanner.nextInt();
 
         if (String.valueOf(input_number).length() != 4) {
             throw new Exception("Bad length, try again!");
