@@ -23,7 +23,12 @@ public class BullsAndCows {
             randNumber /= 10;
         }
     }
-    public boolean successful(int userNumber) {
+
+    public boolean successful(int userNumber) throws Exception {
+        if (String.valueOf(userNumber).length() != 4) {
+            throw new Exception("Bad length, try again!");
+        }
+
         bulls = 0;
         cows = 0;
         int numberCopy = number;

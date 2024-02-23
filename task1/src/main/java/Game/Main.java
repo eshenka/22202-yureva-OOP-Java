@@ -1,7 +1,7 @@
 package Game;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         User user = new User();
 
         RandNumber rand = new RandNumber();
@@ -20,7 +20,14 @@ public class Main {
 
             int guess = user.getInputNumber();
 
-            if (game.successful(guess)) {
+            boolean result = false;
+            try {
+                result = game.successful(guess);
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+
+            if (result) {
                 gameMessages.SuccessfulGuessMessage();
                 break;
             }
