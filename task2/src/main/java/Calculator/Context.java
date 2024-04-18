@@ -6,27 +6,36 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class Context {
-    private Stack<Object> stack;
-    private HashMap<String, Double> parameters;
+    private final Stack<String> stack;
+    private final HashMap<String, Double> parameters;
 
     public Context() {
-        this.stack = new Stack<Object>();
+        this.stack = new Stack<String>();
         this.parameters = new HashMap<String, Double>();
     }
 
-    public void push(Object element) {
+    public void push(String element) {
         stack.push(element);
     }
 
-    public double pop() {
-        if (stack.peek() instanceof String) {
-            return parameters.get(stack.pop());
-        } else {
-            return (double) stack.pop();
+    private static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
         }
     }
 
-    public Object peek() {
+    public double pop() {
+        if (!isNumeric(stack.peek())) {
+            return parameters.get(stack.pop());
+        } else {
+            return Double.parseDouble(stack.pop());
+        }
+    }
+
+    public String peek() {
         return stack.peek();
     }
 

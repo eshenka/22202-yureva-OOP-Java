@@ -4,13 +4,13 @@ import io.InputReader;
 import Calculator.Calculator;
 
 public class Parser {
-    private InputReader inputReader;
-    private Calculator calculator;
+    String line;
 
-    public Parser(InputReader inputReader, Calculator calculator) {
-        this.inputReader = inputReader;
-        this.calculator = calculator;
+    public Parser(String line) {
+        this.line = line;
     }
 
-//    calculator.process();
+    public String[] parse() {
+        return line.split(" ");
+    }
 }
