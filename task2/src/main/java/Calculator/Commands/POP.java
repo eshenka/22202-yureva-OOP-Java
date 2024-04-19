@@ -6,12 +6,11 @@ import Exceptions.ContextException;
 public class POP implements SingleInstruction {
 
     @Override
-    public void execute(String[] operands, Context context) {
+    public void execute(String[] operands, Context context) throws ContextException {
         try {
             context.pop();
         } catch (ContextException exception) {
-            System.err.println(exception.getMessage());
+            throw exception;
         }
-
     }
 }

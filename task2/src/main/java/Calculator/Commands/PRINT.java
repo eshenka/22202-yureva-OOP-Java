@@ -8,7 +8,7 @@ import java.util.EmptyStackException;
 
 public class PRINT implements SingleInstruction {
     @Override
-    public void execute(String[] operands, Context context) throws CommandException {
+    public void execute(String[] operands, Context context) throws CommandException, ContextException {
         if (operands.length != 0) {
             throw new CommandException("This command do not need any arguments");
         }
@@ -16,7 +16,7 @@ public class PRINT implements SingleInstruction {
         try {
             System.out.println(context.peek());
         } catch (ContextException exception) {
-            System.err.println(exception.getMessage());
+            throw exception;
         }
 
     }
