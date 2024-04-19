@@ -1,7 +1,9 @@
 package Calculator;
 
 import Calculator.Commands.SingleInstruction;
+import Exceptions.ContextException;
 
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -27,16 +29,24 @@ public class Context {
         }
     }
 
-    public double pop() {
-        if (!isNumeric(stack.peek())) {
-            return parameters.get(stack.pop());
-        } else {
-            return Double.parseDouble(stack.pop());
+    public double pop() throws ContextException {
+        try {
+            if (!isNumeric(stack.peek())) {
+                return parameters.get(stack.pop());
+            } else {
+                return Double.parseDouble(stack.pop());
+            }
+        } catch (EmptyStackException exception) {
+            throw new ContextException("Too few elements in stack to perform operation");
         }
     }
 
-    public String peek() {
-        return stack.peek();
+    public String peek() throws ContextException {
+        try {
+            return stack.peek();
+        } catch (EmptyStackException exception) {
+            throw new ContextException("Too few elements in stack to perform operation");
+        }
     }
 
     public void define(String key, Double value) {
