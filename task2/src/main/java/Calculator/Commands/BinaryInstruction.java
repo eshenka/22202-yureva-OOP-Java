@@ -17,13 +17,13 @@ public abstract class BinaryInstruction implements SingleInstruction {
             try {
                 context.push(executeOperation(firstOp, secondOp).toString());
             } catch (CommandException exception) {
-//                System.err.println(exception.getMessage());
                 context.push(secondOp.toString());
                 context.push(firstOp.toString());
+                throw exception;
             }
-        } catch (ContextException exception) {
+        } catch (ContextException | CommandException exception) {
 //            System.err.println(exception.getMessage());
-            throw exception;
+            throw new ContextException(exception.getMessage());
         }
     }
 

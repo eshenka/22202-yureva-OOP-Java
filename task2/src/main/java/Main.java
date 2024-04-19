@@ -1,4 +1,6 @@
 import Calculator.Calculator;
+import Exceptions.CommandException;
+import Exceptions.ContextException;
 import io.InputReader;
 import parser.Parser;
 
@@ -15,7 +17,11 @@ public class Main {
             String input = inputReader.read();
             if (input != null) {
                 Parser parser = new Parser(input);
-                calculator.process(parser.parse());
+                try {
+                    calculator.process(parser.parse());
+                } catch (CommandException | ContextException exception) {
+                    System.err.println(exception.getMessage());
+                }
             }
         }
     }

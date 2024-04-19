@@ -9,8 +9,6 @@ public class DIVIDE extends BinaryInstruction {
             throw new CommandException("Division by zero");
         }
 
-
-        System.out.println("Divide "+firstOp+" by "+secondOp);
         return firstOp / secondOp;
     }
 }

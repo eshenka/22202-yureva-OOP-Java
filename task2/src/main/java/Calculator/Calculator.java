@@ -21,7 +21,7 @@ public class Calculator {
         this.factory = new CommandFactory(cfgFile);
     }
 
-    public void process(String[] tokens) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, CommandException {
+    public void process(String[] tokens) throws Exception {
         String commandName = tokens[0];
 
         SingleInstruction command = factory.getObject(commandName);
@@ -30,8 +30,8 @@ public class Calculator {
             command.execute(Arrays.copyOfRange(tokens, 1, tokens.length), context);
             logger.info("Executed command " + commandName);
         } catch (CommandException | ContextException exception) {
-            System.err.println(exception.getMessage());
             logger.error("Failed to execute " + commandName + ". Error message: " + exception.getMessage());
+            throw exception;
         }
 
     }
