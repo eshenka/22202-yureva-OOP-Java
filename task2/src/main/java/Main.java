@@ -2,14 +2,11 @@ import Calculator.Calculator;
 import Exceptions.CommandException;
 import Exceptions.ContextException;
 import io.InputReader;
-import parser.Parser;
-
-import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
+import Parser.Parser;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-//        InputReader inputReader = new InputReader("src/main/resources/test.txt");
+//        InputReader inputReader = new InputReader(args[0]);
         InputReader inputReader = new InputReader();
         Calculator calculator = new Calculator("src/main/resources/Factory.cfg");
 

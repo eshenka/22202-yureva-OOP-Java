@@ -2,9 +2,11 @@ package Calculator;
 
 import Calculator.Commands.SingleInstruction;
 import Exceptions.ContextException;
+import Exceptions.UndefinedParameterException;
 
 import java.util.EmptyStackException;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class Context {
@@ -32,6 +34,12 @@ public class Context {
     public double pop() throws ContextException {
         try {
             if (!isNumeric(stack.peek())) {
+                Double parameter = parameters.get(stack.peek());
+
+                if (parameter == null) {
+                    throw new UndefinedParameterException("Parameter was not defined");
+                }
+
                 return parameters.get(stack.pop());
             } else {
                 return Double.parseDouble(stack.pop());

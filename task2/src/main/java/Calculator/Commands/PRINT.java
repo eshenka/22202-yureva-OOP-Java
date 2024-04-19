@@ -13,11 +13,6 @@ public class PRINT implements SingleInstruction {
             throw new CommandException("This command do not need any arguments");
         }
 
-        try {
-            System.out.println(context.peek());
-        } catch (ContextException exception) {
-            throw exception;
-        }
-
+        System.out.println(context.peek());
     }
 }

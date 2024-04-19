@@ -1,7 +1,4 @@
-package parser;
-
-import io.InputReader;
-import Calculator.Calculator;
+package Parser;
 
 public class Parser {
     String line;

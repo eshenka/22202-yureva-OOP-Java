@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CommandFactory {
-    private Map<String, Class<SingleInstruction>> commands = new HashMap<>();
+    private final Map<String, Class<SingleInstruction>> commands = new HashMap<>();
 
     public CommandFactory(String configFile) throws ClassNotFoundException, FileNotFoundException {
         File file = new File(configFile);
