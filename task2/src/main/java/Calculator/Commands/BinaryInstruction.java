@@ -1,6 +1,8 @@
 package Calculator.Commands;
 
 import Calculator.Context;
+import Exceptions.CommandException;
+import Exceptions.ContextException;
 
 import java.util.OptionalDouble;
 
@@ -8,11 +10,21 @@ public abstract class BinaryInstruction implements SingleInstruction {
 
     @Override
     public void execute(String[] operands, Context context) {
-        Double firstOp = context.pop();
-        Double secondOp = context.pop();
+        try {
+            Double firstOp = context.pop();
+            Double secondOp = context.pop();
 
-        context.push(executeOperation(firstOp, secondOp).toString());
+            try {
+                context.push(executeOperation(firstOp, secondOp).toString());
+            } catch (CommandException exception) {
+                System.err.println(exception.getMessage());
+                context.push(secondOp.toString());
+                context.push(firstOp.toString());
+            }
+        } catch (ContextException exception) {
+            System.err.println(exception.getMessage());
+        }
     }
 
-    public abstract Double executeOperation(Double firstOp, Double secondOp);
+    public abstract Double executeOperation(Double firstOp, Double secondOp) throws CommandException;
 }
