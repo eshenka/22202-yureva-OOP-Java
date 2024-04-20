@@ -19,7 +19,7 @@ public class SQRT implements SingleInstruction {
 
         if (value < 0) {
             context.push(String.valueOf(value));
-            throw new CommandException("Square root of negative number do not exist");
+            throw new CommandException("Square root of negative number does not exist");
         }
 
         context.push(String.valueOf(sqrt(value)));

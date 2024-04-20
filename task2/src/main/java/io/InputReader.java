@@ -20,7 +20,7 @@ public class InputReader {
             file = new File(fileName);
             scanner = new Scanner(file);
         } catch (InputReaderException | FileNotFoundException exception) {
-            throw new InputReaderException("Unable to open file");
+            System.out.println(exception.getMessage());
         }
     }
 

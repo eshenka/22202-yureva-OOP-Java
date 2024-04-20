@@ -6,8 +6,13 @@ import Parser.Parser;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-//        InputReader inputReader = new InputReader(args[0]);
-        InputReader inputReader = new InputReader();
+        InputReader inputReader;
+        if (args.length > 0) {
+            inputReader = new InputReader(args[0]);
+        } else {
+            inputReader = new InputReader();
+        }
+
         Calculator calculator = new Calculator("src/main/resources/Factory.cfg");
 
         while (inputReader.hasNext()) {
