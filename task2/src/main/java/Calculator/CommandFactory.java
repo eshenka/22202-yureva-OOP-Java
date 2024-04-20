@@ -2,25 +2,29 @@ package Calculator;
 
 import Calculator.Commands.SingleInstruction;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class CommandFactory {
     private final Map<String, Class<SingleInstruction>> commands = new HashMap<>();
 
-    public CommandFactory(String configFile) throws ClassNotFoundException, FileNotFoundException {
-        File file = new File(configFile);
-        Scanner scanner = new Scanner(file);
+    public CommandFactory(String configFile) throws ClassNotFoundException, IOException {
+        Properties properties = new Properties();
+        InputStream file = CommandFactory.class.getResourceAsStream(configFile);
 
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] tokens = line.split("=");
+        try {
+            properties.load(file);
 
-            commands.put(tokens[0], (Class<SingleInstruction>) Class.forName(tokens[1]));
+            for (Object instructionNameObject : properties.keySet()) {
+                String instructionName = (String) instructionNameObject;
+                commands.put(instructionName, (Class<SingleInstruction>) Class.forName((String) properties.get(instructionNameObject)));
+            }
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 

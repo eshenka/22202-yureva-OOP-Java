@@ -13,7 +13,7 @@ public class Main {
             inputReader = new InputReader();
         }
 
-        Calculator calculator = new Calculator("src/main/resources/Factory.cfg");
+        Calculator calculator = new Calculator("/Factory.cfg");
 
         while (inputReader.hasNext()) {
             String input = inputReader.read();

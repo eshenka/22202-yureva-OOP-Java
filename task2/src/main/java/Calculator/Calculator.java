@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
@@ -16,7 +17,7 @@ public class Calculator {
 
     private static final Logger logger = LoggerFactory.getLogger(Calculator.class);
 
-    public Calculator(String cfgFile) throws FileNotFoundException, ClassNotFoundException {
+    public Calculator(String cfgFile) throws IOException, ClassNotFoundException {
         this.context = new Context();
         this.factory = new CommandFactory(cfgFile);
     }
