@@ -1,7 +1,7 @@
-package Controller;
+package ModelFactory;
 
-import Factory.Details.*;
-import Factory.Storages.Storage;
+import ModelFactory.Details.*;
+import ModelFactory.Storages.Storage;
 
 import static java.lang.Thread.sleep;
 
@@ -21,7 +21,7 @@ public class Task implements Runnable {
     @Override
     public void run() {
         try {
-            sleep(3000);
+            sleep(10000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +36,6 @@ public class Task implements Runnable {
         try {
 
             carStorage.store(car);
-            System.out.println("Task done");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

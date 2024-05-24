@@ -1,4 +1,4 @@
-package Factory.Details;
+package ModelFactory.Details;
 
 public class Car extends Detail {
     Detail motor;

@@ -1,13 +1,12 @@
-package Threadpool;
+package ModelFactory.Threadpool;
 
-import Controller.Task;
-import Factory.Details.*;
-import Factory.Storages.Storage;
-import Factory.Worker;
+import ModelFactory.Task;
+import ModelFactory.Details.*;
+import ModelFactory.Storages.Storage;
+import ModelFactory.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Threadpool {

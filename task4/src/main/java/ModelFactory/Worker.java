@@ -1,11 +1,6 @@
-package Factory;
+package ModelFactory;
 
-import Controller.Task;
-import Threadpool.Threadpool;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import ModelFactory.Threadpool.Threadpool;
 
 
 public class Worker extends Thread {

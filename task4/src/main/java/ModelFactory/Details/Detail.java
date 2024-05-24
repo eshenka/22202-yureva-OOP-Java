@@ -1,4 +1,4 @@
-package Factory.Details;
+package ModelFactory.Details;
 
 abstract public class Detail {
     int id;

@@ -1,26 +1,29 @@
-package Factory.Storages;
+package ModelFactory.Storages;
 
-import Factory.FactoryController;
+import Controller.Controller;
+import ModelFactory.FactoryController;
+import View.Event.FactoryEvent;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Storage<T> {
+    FactoryController controller;
     LinkedList<T> stored;
     int capacity;
     private int storedAll = 0;
     private int bought = 0;
 
-    public Storage(int capacity) {
+    public Storage(int capacity, FactoryController controller) {
         this.capacity = capacity;
         this.stored = new LinkedList<>();
+        this.controller = controller;
     }
 
     public boolean isFull() {
         return stored.size() == capacity;
     }
 
-    public int getCurrentSize() {
+    synchronized public int getCurrentSize() {
         return stored.size();
     }
     synchronized public void store(T detail) throws InterruptedException {
@@ -28,7 +31,10 @@ public class Storage<T> {
             wait();
         }
 
+        controller.notify(new FactoryEvent(storedAll));
+
         notify();
+
 
         storedAll++;
         stored.add(detail);
@@ -38,6 +44,8 @@ public class Storage<T> {
         while (stored.isEmpty()) {
             wait();
         }
+
+        controller.notify(new FactoryEvent(bought));
 
         notify();
 
@@ -49,7 +57,11 @@ public class Storage<T> {
         return storedAll;
     }
 
-    synchronized public int gerAllBought() {
+    synchronized public int getAllBought() {
         return bought;
+    }
+
+    synchronized public int gerCurrentSize() {
+        return stored.size();
     }
 }

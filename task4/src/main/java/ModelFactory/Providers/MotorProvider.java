@@ -1,8 +1,9 @@
-package Factory.Providers;
+package ModelFactory.Providers;
 
-import Factory.Details.Detail;
-import Factory.Details.Motor;
-import Factory.Storages.Storage;
+import ModelFactory.Details.Detail;
+import ModelFactory.Details.Motor;
+import ModelFactory.Storages.Storage;
+import ModelFactory.Task;
 
 public class MotorProvider extends Provider {
     public MotorProvider(int speed, Storage<Detail> storage) {

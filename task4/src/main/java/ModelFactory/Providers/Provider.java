@@ -1,7 +1,7 @@
-package Factory.Providers;
+package ModelFactory.Providers;
 
-import Factory.Details.Detail;
-import Factory.Storages.Storage;
+import ModelFactory.Details.Detail;
+import ModelFactory.Storages.Storage;
 
 abstract public class Provider extends Thread {
     int speed;

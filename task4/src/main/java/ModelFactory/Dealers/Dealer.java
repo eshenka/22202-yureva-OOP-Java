@@ -1,8 +1,8 @@
-package Factory.Dealers;
+package ModelFactory.Dealers;
 
-import Factory.Details.Car;
-import Factory.FactoryController;
-import Factory.Storages.Storage;
+import ModelFactory.Details.Car;
+import ModelFactory.FactoryController;
+import ModelFactory.Storages.Storage;
 
 public class Dealer extends Thread {
     Storage<Car> carStorage;
@@ -15,11 +15,13 @@ public class Dealer extends Thread {
         this.controller = controller;
     }
 
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     public void buy() throws InterruptedException {
         sleep(speed);
-        System.out.println("Dealer trying");
         Car car = (Car) carStorage.get();
-        System.out.println("Dealer bought");
         controller.upd();
     }
 

@@ -1,8 +1,8 @@
-package Factory.Providers;
+package ModelFactory.Providers;
 
-import Factory.Details.Body;
-import Factory.Details.Detail;
-import Factory.Storages.Storage;
+import ModelFactory.Details.Body;
+import ModelFactory.Details.Detail;
+import ModelFactory.Storages.Storage;
 
 public class BodyProvider extends Provider {
     public BodyProvider(int speed, Storage<Detail> storage) {
