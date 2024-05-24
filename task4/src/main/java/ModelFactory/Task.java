@@ -36,6 +36,7 @@ public class Task implements Runnable {
         try {
 
             carStorage.store(car);
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

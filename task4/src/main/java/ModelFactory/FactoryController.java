@@ -3,9 +3,7 @@ package ModelFactory;
 import ModelFactory.Details.*;
 import ModelFactory.Storages.Storage;
 import ModelFactory.Threadpool.Threadpool;
-import View.Event.Event;
 import View.Observer.Observable;
-import View.Observer.Observer;
 
 public class FactoryController extends Observable {
     Storage<Car> carStorage;
