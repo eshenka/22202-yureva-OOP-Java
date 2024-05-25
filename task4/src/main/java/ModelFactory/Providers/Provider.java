@@ -6,10 +6,12 @@ import ModelFactory.Storages.Storage;
 abstract public class Provider extends Thread {
     int speed;
     Storage<Detail> storage;
+    OnCompleteProvisionHandler handler;
 
-    public Provider(int speed, Storage<Detail> storage) {
+    public Provider(int speed, Storage<Detail> storage, OnCompleteProvisionHandler handler) {
         this.speed = speed;
         this.storage = storage;
+        this.handler = handler;
     }
 
     abstract public void provide() throws InterruptedException;
@@ -19,6 +21,7 @@ abstract public class Provider extends Thread {
         while (true) {
             try {
                 provide();
+                handler.onComplete();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

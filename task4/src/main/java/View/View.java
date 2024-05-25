@@ -58,7 +58,6 @@ public class View extends JFrame implements ActionListener, Observer {
         addComponents("Accessory Providers' speed", 0, 20, accessoryListener);
         addComponents( "Dealers' speed", 0, 30, dealerListener);
 
-//        mainPanel.setBackground(Color.BLACK);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.setPreferredSize(new Dimension(400, 400));
@@ -99,10 +98,6 @@ public class View extends JFrame implements ActionListener, Observer {
         panel.add(label, BorderLayout.NORTH);
         panel.add(slider, BorderLayout.CENTER);
 
-//        panel.setLayout(new GridLayout(2, 2));
-//        panel.setPreferredSize(new Dimension(2, 1));
-//
-//        mainPanel.setLayout(new GridLayout(4, 1));
         mainPanel.add(panel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 

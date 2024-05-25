@@ -2,12 +2,10 @@ package ModelFactory;
 
 import Controller.Controller;
 import ModelFactory.Dealers.Dealer;
+import ModelFactory.Dealers.OnCompleteDealHandler;
 import ModelFactory.Details.Car;
 import ModelFactory.Details.Detail;
-import ModelFactory.Providers.AccessoryProvider;
-import ModelFactory.Providers.BodyProvider;
-import ModelFactory.Providers.MotorProvider;
-import ModelFactory.Providers.Provider;
+import ModelFactory.Providers.*;
 import ModelFactory.Storages.Storage;
 import ModelFactory.Threadpool.Threadpool;
 import View.Observer.Observer;
@@ -63,18 +61,22 @@ public class Factory {
 
         factoryController.addStorages(carStorage, accessoryStorage, bodyStorage, motorStorage);
 
+        OnCompleteProvisionHandler provisionHandler = new OnCompleteProvisionHandler(factoryController);
+
         // Creating providers
-        motorProvider = new MotorProvider(providersInitialSpeed, motorStorage);
-        bodyProvider = new BodyProvider(providersInitialSpeed, bodyStorage);
+        motorProvider = new MotorProvider(providersInitialSpeed, motorStorage, provisionHandler);
+        bodyProvider = new BodyProvider(providersInitialSpeed, bodyStorage, provisionHandler);
 
         accessoryProviders = new Provider[Integer.parseInt(properties.getProperty("AccessoryProviders"))];
         for (int i = 0; i < accessoryProviders.length; i++) {
-            accessoryProviders[i] = new AccessoryProvider(providersInitialSpeed, accessoryStorage);
+            accessoryProviders[i] = new AccessoryProvider(providersInitialSpeed, accessoryStorage, provisionHandler);
         }
+
+        OnCompleteDealHandler dealHandler = new OnCompleteDealHandler(factoryController);
 
         dealers = new Dealer[Integer.parseInt(properties.getProperty("DealersNumber"))];
         for (int i = 0; i < dealers.length; i++) {
-            dealers[i] = new Dealer(dealersInitialSpeed, carStorage, factoryController);
+            dealers[i] = new Dealer(dealersInitialSpeed, carStorage, dealHandler);
         }
 
     }

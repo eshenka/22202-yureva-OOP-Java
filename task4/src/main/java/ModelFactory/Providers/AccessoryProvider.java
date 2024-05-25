@@ -5,8 +5,8 @@ import ModelFactory.Details.Detail;
 import ModelFactory.Storages.Storage;
 
 public class AccessoryProvider extends Provider {
-    public AccessoryProvider(int speed, Storage<Detail> storage) {
-        super(speed, storage);
+    public AccessoryProvider(int speed, Storage<Detail> storage, OnCompleteProvisionHandler handler) {
+        super(speed, storage, handler);
     }
 
     @Override

@@ -35,7 +35,6 @@ public class Storage<T> {
 
         notify();
 
-
         storedAll++;
         stored.add(detail);
     }

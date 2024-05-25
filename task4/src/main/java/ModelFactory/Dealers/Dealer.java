@@ -10,13 +10,13 @@ public class Dealer extends Thread {
     private static final Logger logger = LoggerFactory.getLogger(Dealer.class);
 
     Storage<Car> carStorage;
-    FactoryController controller;
+    OnCompleteDealHandler handler;
     int speed;
 
-    public Dealer(int speed, Storage<Car> carStorage, FactoryController controller) {
+    public Dealer(int speed, Storage<Car> carStorage, OnCompleteDealHandler handler) {
         this.speed = speed;
         this.carStorage = carStorage;
-        this.controller = controller;
+        this.handler = handler;
     }
 
     public void setSpeed(int speed) {
@@ -26,7 +26,6 @@ public class Dealer extends Thread {
     public void buy() throws InterruptedException {
         sleep(speed);
         Car car = (Car) carStorage.get();
-        controller.upd();
 
         logger.info("Dealer bought" + " : Auto " + car.getId() + " : (Body: " + car.getBody().getId() + ", Motor " + car.getMotor().getId() + ", Accessory " + car.getAccessory().getId() + ")");
     }
@@ -36,6 +35,7 @@ public class Dealer extends Thread {
         while (true) {
             try {
                 buy();
+                handler.onComplete();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

@@ -6,8 +6,8 @@ import ModelFactory.Storages.Storage;
 import ModelFactory.Task;
 
 public class MotorProvider extends Provider {
-    public MotorProvider(int speed, Storage<Detail> storage) {
-        super(speed, storage);
+    public MotorProvider(int speed, Storage<Detail> storage, OnCompleteProvisionHandler handler) {
+        super(speed, storage, handler);
     }
 
     @Override
