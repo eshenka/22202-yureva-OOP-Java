@@ -1,17 +1,17 @@
-package ModelFactory;
+package ModelFactory.Threadpool;
 
 import ModelFactory.Details.*;
 import ModelFactory.Storages.Storage;
 
 import static java.lang.Thread.sleep;
 
-public class Task implements Runnable {
+public class WorkerTask extends Task {
     Storage<Detail> detailStorage;
     Storage <Detail> bodyStorage;
     Storage<Detail> motorStorage;
     Storage<Car> carStorage;
 
-    public Task(Storage<Detail> detailStorage, Storage<Detail> bodyStorage, Storage<Detail> motorStorage, Storage<Car> carStorage) {
+    public WorkerTask(Storage<Detail> detailStorage, Storage<Detail> bodyStorage, Storage<Detail> motorStorage, Storage<Car> carStorage) {
         this.detailStorage = detailStorage;
         this.bodyStorage = bodyStorage;
         this.motorStorage = motorStorage;

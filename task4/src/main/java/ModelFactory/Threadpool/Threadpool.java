@@ -1,9 +1,7 @@
 package ModelFactory.Threadpool;
 
-import ModelFactory.Task;
 import ModelFactory.Details.*;
 import ModelFactory.Storages.Storage;
-import ModelFactory.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ public class Threadpool {
 
         this.workersNumber = workersNumber;
 
-        for (int i =0; i < workersNumber; i++) {
+        for (int i = 0; i < workersNumber; i++) {
             workers.add(new Worker(this));
         }
     }
@@ -31,10 +29,8 @@ public class Threadpool {
     }
 
 
-    public void addTasks(int tasksNumber, Storage<Detail> detail, Storage<Detail> body, Storage<Detail> motor, Storage<Car> car) {
-        for (int i = 0; i < tasksNumber; i++) {
-            tasks.add(new Task(detail, body, motor, car));
-        }
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
     public Task getTask() {

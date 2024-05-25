@@ -3,6 +3,7 @@ package ModelFactory;
 import ModelFactory.Details.*;
 import ModelFactory.Storages.Storage;
 import ModelFactory.Threadpool.Threadpool;
+import ModelFactory.Threadpool.WorkerTask;
 import View.Observer.Observable;
 
 public class FactoryController extends Observable {
@@ -27,7 +28,9 @@ public class FactoryController extends Observable {
 
     public void upd() {
         if (carStorage.getCurrentSize() <= criticalValue) {
-            workersTasks.addTasks(criticalValue, accessoryStorage, bodyStorage, motorStorage, carStorage);
+            for (int i = 0; i < criticalValue; i++) {
+                workersTasks.addTask(new WorkerTask(accessoryStorage, bodyStorage, motorStorage, carStorage));
+            }
         }
     }
 }
