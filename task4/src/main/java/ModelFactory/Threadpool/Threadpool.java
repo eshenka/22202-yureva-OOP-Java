@@ -5,6 +5,7 @@ import ModelFactory.Storages.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Threadpool {
@@ -18,7 +19,7 @@ public class Threadpool {
         this.workersNumber = workersNumber;
 
         for (int i = 0; i < workersNumber; i++) {
-            workers.add(new Worker(this));
+            workers.add(new Worker(this.tasks));
         }
     }
 

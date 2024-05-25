@@ -8,6 +8,7 @@ import ModelFactory.Details.Detail;
 import ModelFactory.Providers.*;
 import ModelFactory.Storages.Storage;
 import ModelFactory.Threadpool.Threadpool;
+import ModelFactory.Threadpool.WorkerTask;
 import View.Observer.Observer;
 
 import java.io.File;
@@ -54,10 +55,10 @@ public class Factory {
         int bodyStorageSize = Integer.parseInt(properties.getProperty("BodyCapacity"));
         int motorStorageSize = Integer.parseInt(properties.getProperty("MotorCapacity"));
 
-        carStorage = new Storage<>(carStorageSize, factoryController);
-        motorStorage = new Storage<>(motorStorageSize, factoryController);
-        bodyStorage = new Storage<>(bodyStorageSize, factoryController);
-        accessoryStorage = new Storage<>(accessoryStorageSize, factoryController);
+        carStorage = new Storage<>(carStorageSize);
+        motorStorage = new Storage<>(motorStorageSize);
+        bodyStorage = new Storage<>(bodyStorageSize);
+        accessoryStorage = new Storage<>(accessoryStorageSize);
 
         factoryController.addStorages(carStorage, accessoryStorage, bodyStorage, motorStorage);
 
@@ -94,9 +95,11 @@ public class Factory {
             dealer.start();
         }
 
-        pool.addTasks(500, accessoryStorage, bodyStorage, motorStorage, carStorage);
-        pool.run();
+        for (int i = 0; i < 500; i ++) {
+            pool.addTask(new WorkerTask(accessoryStorage, bodyStorage, motorStorage, carStorage));
+        }
 
+        pool.run();
     }
 
     public void getStatistics() {
