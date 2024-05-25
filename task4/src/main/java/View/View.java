@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Controller;
-import ModelFactory.Factory;
 import View.Event.AccessoryProviderEvent;
 import View.Event.BodyProviderEvent;
 import View.Event.DealerEvent;
@@ -15,8 +14,6 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
 
 public class View extends JFrame implements ActionListener, Observer {
 

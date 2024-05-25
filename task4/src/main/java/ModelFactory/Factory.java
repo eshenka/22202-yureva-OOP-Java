@@ -1,6 +1,5 @@
 package ModelFactory;
 
-import Controller.Controller;
 import ModelFactory.Dealers.Dealer;
 import ModelFactory.Dealers.OnCompleteDealHandler;
 import ModelFactory.Details.Car;
