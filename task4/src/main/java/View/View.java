@@ -78,7 +78,7 @@ public class View extends JFrame implements ActionListener, Observer {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
-        JSlider slider = new JSlider(1, 25, 10);
+        JSlider slider = new JSlider(1, 10, 5);
         slider.setPaintTrack(true);
         slider.setPaintTicks(true);
         slider.setMajorTickSpacing(1);
