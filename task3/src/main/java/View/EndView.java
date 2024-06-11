@@ -13,7 +13,7 @@ public class EndView extends JFrame {
         JPanel endPanel = new JPanel();
         endPanel.setLayout(new GridBagLayout());
 
-        JLabel congratsText = new JLabel("              YOU WON!!!!");
+        JLabel congratsText = new JLabel("YOU WON!!!!", SwingConstants.CENTER);
         congratsText.setFont(new Font("Serif", Font.BOLD, 100));
         add(congratsText);
     }
