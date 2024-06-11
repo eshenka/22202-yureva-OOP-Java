@@ -15,8 +15,8 @@ import java.io.FileReader;
 import java.util.Properties;
 
 public class Factory {
-    static int providersInitialSpeed = 10000;
-    static int dealersInitialSpeed = 10000;
+    static int providersInitialSpeed = 1000;
+    static int dealersInitialSpeed = 1000;
 
     Storage<Car> carStorage;
     Storage<Detail> motorStorage;

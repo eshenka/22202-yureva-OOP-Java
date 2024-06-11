@@ -25,7 +25,7 @@ public class Storage<T> {
             wait();
         }
 
-        notify();
+        notifyAll();
 
         storedAll++;
         stored.add(detail);
@@ -36,7 +36,7 @@ public class Storage<T> {
             wait();
         }
 
-        notify();
+        notifyAll();
 
         bought++;
         return stored.poll();

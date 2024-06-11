@@ -11,6 +11,7 @@ public class AccessoryListener extends Observable implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
         JSlider slider = (JSlider) e.getSource();
+        System.out.println(slider.getValue());
         notify(new AccessoryProviderEvent(slider.getValue()));
     }
 }

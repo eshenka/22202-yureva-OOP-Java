@@ -21,7 +21,7 @@ public class WorkerTask extends Task {
     @Override
     public void run() {
         try {
-            sleep(10000);
+            sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
