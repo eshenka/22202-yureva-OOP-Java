@@ -2,6 +2,7 @@ package Observation;
 
 import Controller.Event;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Observable {
         observers.add(observer);
     }
 
-    synchronized public void notify (Event event) {
+    public void notify (Event event) throws InterruptedException, IOException {
         for (Observer o : observers) {
             o.notify(event);
         }

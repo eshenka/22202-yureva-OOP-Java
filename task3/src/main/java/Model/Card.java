@@ -18,6 +18,10 @@ public class Card {
         return state;
     }
 
+    public void setState(State state) {
+        this.state = state;
+    }
+
     boolean isClosed() {
         return state == State.CLOSED;
     }

@@ -1,33 +1,27 @@
 package Model;
 
+import Controller.GameWonEvent;
+import Controller.WrongGuessEvent;
 import Observation.Observable;
+
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class Game extends Observable {
-    public enum Difficulty {
-        EASY(4),
-        MEDIUM(6),
-        HARD(8);
-        private final int difficulty;
-        Difficulty(int difficulty) {
-            this.difficulty = difficulty;
-        }
-        public int getDifficulty() {
-            return difficulty;
-        }
+    ArrayList<Card> cards;
+    ArrayList<Pair> openedCards;
+    BufferedReader images;
 
+    public Game(String imagesPath) throws IOException {
+        images = new BufferedReader(new FileReader(imagesPath));
     }
 
-    ArrayList<Card> cards;
-
-    public Game(Difficulty difficulty, String imagesPath) throws IOException {
-        BufferedReader images = new BufferedReader(new FileReader(imagesPath));
-
-        int capacity = difficulty.getDifficulty();
+    public void setDifficulty(int difficulty) throws IOException {
+        int capacity = difficulty;
 
         cards = new ArrayList<>(capacity * capacity);
+        openedCards = new ArrayList<>();
 
         for (int i = 0; i < capacity * capacity / 2; i++) {
             String imagePath = images.readLine();
@@ -45,6 +39,37 @@ public class Game extends Observable {
             Card temp = cards.get(i);
             cards.set(i, cards.get(j));
             cards.set(j, temp);
+        }
+    }
+
+    public String getImage(int index) {
+        String image = cards.get(index).getImage();
+
+        openedCards.add(new Pair(image, index));
+
+        return image;
+    }
+
+    public void compare() throws InterruptedException, IOException {
+        if (openedCards.size() == 2) {
+            String firstImage = openedCards.get(0).first();
+            Integer firstIndex = openedCards.get(0).second();
+            openedCards.remove(0);
+            String secondImage = openedCards.get(0).first();
+            Integer secondIndex = openedCards.get(0).second();
+            openedCards.remove(0);
+
+            if (firstImage.equals(secondImage)) {
+                cards.get(firstIndex).setState(Card.State.OPENED);
+                cards.get(secondIndex).setState(Card.State.OPENED);
+
+                if (isWon()) {
+                    notify(new GameWonEvent("You won!"));
+                }
+            } else {
+                notify(new WrongGuessEvent("Wrong guess", firstIndex, secondIndex));
+            }
+
         }
     }
 
