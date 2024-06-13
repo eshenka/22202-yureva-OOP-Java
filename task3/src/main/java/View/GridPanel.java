@@ -11,8 +11,8 @@ public class GridPanel extends JPanel {
 
     ArrayList<JPanel> buttonPanels;
     GridListener gridListener;
-    public GridPanel () {
-        gridListener = new GridListener();
+    public GridPanel (GridListener gridListener) {
+        this.gridListener = gridListener;
     }
 
     public void setDifficulty(int difficulty) {

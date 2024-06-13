@@ -5,6 +5,7 @@ import Observation.Observer;
 import Model.Game;
 import View.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -62,6 +63,13 @@ public class Controller implements Observer {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    try {
+                        game.reset();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    view.reset();
+
                     view.showMain();
                 }
             }, 5000);

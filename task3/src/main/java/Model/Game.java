@@ -12,8 +12,11 @@ public class Game extends Observable {
     ArrayList<Card> cards;
     ArrayList<Pair> openedCards;
     BufferedReader images;
+    String imagesPath;
 
     public Game(String imagesPath) throws IOException {
+        this.imagesPath = imagesPath;
+
         images = new BufferedReader(new FileReader(imagesPath));
     }
 
@@ -80,5 +83,13 @@ public class Game extends Observable {
             }
         }
         return true;
+    }
+
+    public void reset() throws FileNotFoundException {
+        images = new BufferedReader(new FileReader(imagesPath));
+
+        for (Card card : cards) {
+            card.setState(Card.State.CLOSED);
+        }
     }
 }

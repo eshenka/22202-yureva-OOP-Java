@@ -44,4 +44,8 @@ public class View {
         gameView.setImage(imagePath, dst, state);
         gameView.setImage(imagePath, dst, state);
     }
+
+    public void reset() {
+        gameView.reset();
+    }
 }
