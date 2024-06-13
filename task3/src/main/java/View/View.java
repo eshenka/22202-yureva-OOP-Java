@@ -2,35 +2,46 @@ package View;
 
 import Observation.Observer;
 
-import javax.swing.*;
-
-public class View extends JFrame {
-    GridPanel gridPanel;
+public class View {
+    MainView mainView;
+    GameView gameView;
+    EndView endView;
 
     public View() {
-        super("Memory Game");
-        setSize(1000, 1000);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
-    }
-
-
-    public void setDifficulty(int difficulty) {
-        JPanel panel = new JPanel();
-        panel.setSize(1000, 1000);
-
-        gridPanel = new GridPanel(difficulty);
-
-        panel.add(gridPanel);
-        add(panel);
-    }
-
-    public void setImage(String imagePath, int dst, boolean state) {
-        gridPanel.setImage(imagePath, dst, state);
+        this.mainView = new MainView();
+        this.gameView = new GameView();
+        this.endView = new EndView();
     }
 
     public void addObserver(Observer observer) {
-        gridPanel.addObserver(observer);
+        mainView.addObserver(observer);
+        gameView.addObserver(observer);
+    }
+
+    public void showMain() {
+        mainView.setVisible(true);
+        gameView.setVisible(false);
+        endView.setVisible(false);
+    }
+
+    public void showGame() {
+        mainView.setVisible(false);
+        gameView.setVisible(true);
+        endView.setVisible(false);
+    }
+
+    public void showEnd() {
+        mainView.setVisible(false);
+        gameView.setVisible(false);
+        endView.setVisible(true);
+    }
+
+    public void setGameDifficulty(int difficulty) {
+        gameView.setDifficulty(difficulty);
+    }
+
+    public void setImage(String imagePath, int dst, boolean state) {
+        gameView.setImage(imagePath, dst, state);
+        gameView.setImage(imagePath, dst, state);
     }
 }

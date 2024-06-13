@@ -11,9 +11,11 @@ public class GridPanel extends JPanel {
 
     ArrayList<JPanel> buttonPanels;
     GridListener gridListener;
-    public GridPanel (int difficulty) {
+    public GridPanel () {
         gridListener = new GridListener();
+    }
 
+    public void setDifficulty(int difficulty) {
         setLayout(new GridLayout(difficulty, difficulty));
         setSize(500, 500);
 

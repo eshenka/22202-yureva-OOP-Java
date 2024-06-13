@@ -7,27 +7,24 @@ import View.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller implements Observer {
     Game game;
     View view;
-    MainView mainView;
-    EndView endView;
 
-    public Controller(Game game, View view, MainView mainView, EndView endView) {
+    public Controller(Game game, View view) {
         this.game = game;
         game.addObserver(this);
 
         this.view = view;
-
-        this.mainView = mainView;
-        mainView.addObserver(this);
-        mainView.setVisible(true);
-
-        this.endView = endView;
-
+        view.addObserver(this);
     }
 
+    public void showMenu() {
+        view.showMain();
+    }
 
     boolean wrongGuess = false;
     ArrayList<Integer> wrongGuesses = new ArrayList<>();
@@ -56,15 +53,20 @@ public class Controller implements Observer {
         } else if (event instanceof MenuEvent) {
             game.setDifficulty(((MenuEvent) event).difficulty);
 
-            mainView.setVisible(false);
-            view.setDifficulty(((MenuEvent) event).difficulty);
-            view.addObserver(this);
-            view.setVisible(true);
+            view.setGameDifficulty(((MenuEvent) event).difficulty);
+            view.showGame();
 
         } else if (event instanceof GameWonEvent) {
-            view.setVisible(false);
-            mainView.setVisible(false);
-            endView.setVisible(true);
+            view.showEnd();
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    view.showMain();
+                }
+            }, 5000);
+
+
         }
     }
 }

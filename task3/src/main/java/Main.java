@@ -24,11 +24,10 @@ public class Main {
         Game game = new Game("src/main/resources/images.txt");
 
         View view = new View();
-        MainView mainView = new MainView();
-        EndView endView = new EndView();
 
+        Controller controller = new Controller(game, view);
 
-        Controller controller = new Controller(game, view, mainView, endView);
+        controller.showMenu();
 
     }
 
